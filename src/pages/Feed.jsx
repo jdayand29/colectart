@@ -2,12 +2,9 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppState } from '../store/AppState'
 import { artStyles } from '../data/styles'
-import { artists, getArtwork } from '../data/mockData'
+import { artists } from '../data/mockData'
 import ArtworkCard from '../components/ArtworkCard'
 import SubscribeForm from '../components/SubscribeForm'
-
-const FEATURED_ARTIST_IDS = ['a1', 'a2', 'a3', 'a7', 'a8']
-const EXAMPLE_SOLD_ARTWORK_ID = 'w2'
 
 export default function Feed() {
   const { artworks, auctions } = useAppState()
@@ -19,11 +16,7 @@ export default function Feed() {
 
   const styleOptions = useMemo(() => ['Todos', ...artStyles], [])
   const countries = useMemo(() => new Set(artists.map((a) => a.country)).size, [])
-  const featuredArtists = useMemo(
-    () => FEATURED_ARTIST_IDS.map((id) => artists.find((a) => a.id === id)).filter(Boolean),
-    [],
-  )
-  const exampleArtwork = artworks.find((w) => w.id === EXAMPLE_SOLD_ARTWORK_ID) ?? getArtwork(EXAMPLE_SOLD_ARTWORK_ID)
+  const featuredArtists = useMemo(() => artists.slice(0, 5), [])
 
   function effectivePrice(artwork) {
     if (artwork.type === 'sale') return artwork.price
@@ -69,11 +62,11 @@ export default function Feed() {
       {/* Hero */}
       <div className="mb-8">
         <h1 className="font-serif text-3xl font-semibold sm:text-4xl">
-          Descubre y compra arte original de artistas de todo el mundo
+          Descubre y compra arte original directo del artista
         </h1>
         <p className="mt-2 max-w-2xl text-ink/60">
-          Obras de México, Japón, Nigeria, Italia, Francia y más — a precio fijo o en subasta, directo del artista o
-          de una galería.
+          A precio fijo o en subasta, directo del artista — sin intermediarios. Empezamos en Panamá y crecemos cada
+          semana con más artistas del mundo.
         </p>
         <div className="mt-4 flex flex-wrap gap-6 text-sm text-ink/60">
           <span>
@@ -109,55 +102,35 @@ export default function Feed() {
         </div>
       </div>
 
-      {/* Cómo funciona + ejemplo real de transacción */}
-      <div className="mb-16 grid gap-8 rounded-3xl bg-white p-8 shadow-card md:grid-cols-[1fr_auto]">
-        <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-ink/50">Cómo funciona</h2>
-          <ol className="space-y-3 text-sm">
-            <li className="flex gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
-                1
-              </span>
-              <span>
-                <strong>Descubre</strong> obras por estilo, artista, galería o ciudad.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
-                2
-              </span>
-              <span>
-                <strong>Compra directo o puja</strong> — cada artista elige cómo vender cada obra.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
-                3
-              </span>
-              <span>
-                <strong>Recíbela en casa</strong>, con envío asegurado desde el país del artista.
-              </span>
-            </li>
-          </ol>
-        </div>
-
-        {exampleArtwork && (
-          <Link
-            to={`/obra/${exampleArtwork.id}`}
-            className="flex w-full items-center gap-3 rounded-2xl bg-accent-light/60 p-4 hover:bg-accent-light md:w-64"
-          >
-            <img
-              src={exampleArtwork.image}
-              alt={exampleArtwork.title}
-              className="h-16 w-16 shrink-0 rounded-lg object-cover"
-            />
-            <div>
-              <p className="text-xs font-semibold text-green-700">✓ Ejemplo real de venta</p>
-              <p className="text-sm font-medium leading-tight">{exampleArtwork.title}</p>
-              <p className="text-xs text-ink/50">Comprada por un coleccionista en {exampleArtwork.soldTo}</p>
-            </div>
-          </Link>
-        )}
+      {/* Cómo funciona */}
+      <div className="mb-16 rounded-3xl bg-white p-8 shadow-card">
+        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-ink/50">Cómo funciona</h2>
+        <ol className="grid gap-4 text-sm sm:grid-cols-3">
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
+              1
+            </span>
+            <span>
+              <strong>Descubre</strong> obras por estilo, artista o ciudad.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
+              2
+            </span>
+            <span>
+              <strong>Compra directo o puja</strong> — cada artista elige cómo vender cada obra.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
+              3
+            </span>
+            <span>
+              <strong>Recíbela en casa</strong>, con envío asegurado desde el país del artista.
+            </span>
+          </li>
+        </ol>
       </div>
 
       {/* Filtro de estilo */}

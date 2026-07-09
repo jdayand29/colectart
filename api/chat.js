@@ -1,39 +1,28 @@
 import Anthropic from '@anthropic-ai/sdk'
 
-// Catálogo resumido para que el asistente recomiende solo obras reales del prototipo.
+// Catálogo real para que el asistente recomiende solo artistas y obras que existen de verdad.
+// Esto crecerá a medida que se sumen artistas reales a ColectArt.
 const CATALOG = {
   artistas: [
-    { id: 'a1', nombre: 'Camila Reyes', ciudad: 'Ciudad de México', pais: 'México', estilos: ['Impresionismo', 'Surrealismo'], galeria: 'Galería Turner' },
-    { id: 'a2', nombre: 'Haruto Sato', ciudad: 'Kioto', pais: 'Japón', estilos: ['Minimalismo', 'Impresionismo'], galeria: 'Kyoto Modern Gallery' },
-    { id: 'a3', nombre: 'Amara Nwosu', ciudad: 'Lagos', pais: 'Nigeria', estilos: ['Abstracto', 'Arte Conceptual'], galeria: 'Lagos Contemporary' },
-    { id: 'a4', nombre: 'Luca Ferrari', ciudad: 'Florencia', pais: 'Italia', estilos: ['Realismo', 'Renacentista'], galeria: null },
-    { id: 'a5', nombre: 'Sofía Martínez', ciudad: 'Buenos Aires', pais: 'Argentina', estilos: ['Arte Digital', 'Surrealismo', 'Fotografía'], galeria: null },
-    { id: 'a6', nombre: 'Min-jun Park', ciudad: 'Seúl', pais: 'Corea del Sur', estilos: ['Minimalismo', 'Contemporáneo'], galeria: null },
-    { id: 'a7', nombre: 'Chloé Dubois', ciudad: 'París', pais: 'Francia', estilos: ['Impresionismo', 'Realismo'], galeria: 'Atelier Dubois' },
-    { id: 'a8', nombre: 'Diego Farias', ciudad: 'São Paulo', pais: 'Brasil', estilos: ['Arte Urbano', 'Pop Art'], galeria: 'São Paulo Street Collective' },
+    {
+      id: 'a9',
+      nombre: 'Joseph Dayan',
+      ciudad: 'Ciudad de Panamá',
+      pais: 'Panamá',
+      estilos: ['Surrealismo', 'Abstracto'],
+      galeria: null,
+    },
   ],
-  galerias: [
-    { id: 'g1', nombre: 'Galería Turner', ciudad: 'Ciudad de México', pais: 'México' },
-    { id: 'g2', nombre: 'Kyoto Modern Gallery', ciudad: 'Kioto', pais: 'Japón' },
-    { id: 'g3', nombre: 'Lagos Contemporary', ciudad: 'Lagos', pais: 'Nigeria' },
-    { id: 'g4', nombre: 'Atelier Dubois', ciudad: 'París', pais: 'Francia' },
-    { id: 'g5', nombre: 'São Paulo Street Collective', ciudad: 'São Paulo', pais: 'Brasil' },
-  ],
+  galerias: [],
   obras: [
-    { id: 'w1', titulo: 'Memorias de Xochimilco', artista: 'Camila Reyes', estilo: 'Impresionismo', tipo: 'venta directa', precio: 1850, url: '/obra/w1' },
-    { id: 'w2', titulo: 'Silencio de invierno', artista: 'Haruto Sato', estilo: 'Minimalismo', tipo: 'venta directa', precio: 920, vendida: true, url: '/obra/w2' },
-    { id: 'w3', titulo: 'Raíces tejidas', artista: 'Amara Nwosu', estilo: 'Abstracto', tipo: 'subasta', pujaActual: 680, url: '/obra/w3' },
-    { id: 'w4', titulo: 'Torso en reposo', artista: 'Luca Ferrari', estilo: 'Realismo', tipo: 'subasta', pujaActual: 3900, url: '/obra/w4' },
-    { id: 'w5', titulo: 'Fragmentos digitales #7', artista: 'Sofía Martínez', estilo: 'Arte Digital', tipo: 'venta directa', precio: 640, url: '/obra/w5' },
-    { id: 'w6', titulo: 'Trazo 遠い山', artista: 'Min-jun Park', estilo: 'Minimalismo', tipo: 'venta directa', precio: 1200, url: '/obra/w6' },
-    { id: 'w7', titulo: 'Retrato de una tarde', artista: 'Chloé Dubois', estilo: 'Impresionismo', tipo: 'subasta', pujaActual: 2650, url: '/obra/w7' },
-    { id: 'w8', titulo: 'Concreto vivo', artista: 'Diego Farias', estilo: 'Arte Urbano', tipo: 'venta directa', precio: 780, url: '/obra/w8' },
-    { id: 'w9', titulo: 'Jardín flotante', artista: 'Camila Reyes', estilo: 'Surrealismo', tipo: 'venta directa', precio: 2100, url: '/obra/w9' },
-    { id: 'w10', titulo: 'Estanque de otoño', artista: 'Haruto Sato', estilo: 'Impresionismo', tipo: 'subasta', pujaActual: 300, url: '/obra/w10' },
-    { id: 'w11', titulo: 'Ciudad fantasma', artista: 'Sofía Martínez', estilo: 'Surrealismo', tipo: 'venta directa', precio: 550, url: '/obra/w11' },
-    { id: 'w12', titulo: 'Vacío y forma', artista: 'Min-jun Park', estilo: 'Minimalismo', tipo: 'venta directa', precio: 890, url: '/obra/w12' },
-    { id: 'w13', titulo: 'Rosetón de Notre-Dame', artista: 'Chloé Dubois', estilo: 'Gótico', tipo: 'venta directa', precio: 1650, url: '/obra/w13' },
-    { id: 'w14', titulo: 'Figuras fracturadas', artista: 'Luca Ferrari', estilo: 'Cubismo', tipo: 'venta directa', precio: 1400, url: '/obra/w14' },
+    { id: 'w15', titulo: 'Nebulosa Dorada', artista: 'Joseph Dayan', estilo: 'Abstracto', tipo: 'venta directa', precio: 450, url: '/obra/w15' },
+    { id: 'w16', titulo: 'Siluetas en Armonía', artista: 'Joseph Dayan', estilo: 'Contemporáneo', tipo: 'venta directa', precio: 1400, url: '/obra/w16' },
+    { id: 'w17', titulo: 'Corazón y Razón', artista: 'Joseph Dayan', estilo: 'Surrealismo', tipo: 'venta directa', precio: 680, url: '/obra/w17' },
+    { id: 'w18', titulo: 'Alcanzando el Horizonte', artista: 'Joseph Dayan', estilo: 'Surrealismo', tipo: 'subasta', pujaActual: 1250, url: '/obra/w18' },
+    { id: 'w19', titulo: 'El Pabellón Escondido', artista: 'Joseph Dayan', estilo: 'Realismo', tipo: 'venta directa', precio: 950, url: '/obra/w19' },
+    { id: 'w20', titulo: 'Barco de Papel', artista: 'Joseph Dayan', estilo: 'Minimalismo', tipo: 'venta directa', precio: 520, url: '/obra/w20' },
+    { id: 'w21', titulo: 'El Filo del Tiempo', artista: 'Joseph Dayan', estilo: 'Arte Conceptual', tipo: 'subasta', pujaActual: 980, url: '/obra/w21' },
+    { id: 'w22', titulo: 'Danza de Koi', artista: 'Joseph Dayan', estilo: 'Expresionismo', tipo: 'venta directa', precio: 890, url: '/obra/w22' },
   ],
 }
 
