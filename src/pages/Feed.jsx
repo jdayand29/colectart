@@ -64,7 +64,7 @@ export default function Feed() {
   }, [artworks, auctions, activeStyle, minPrice, maxPrice, onlyAvailable, sortBy])
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-6xl px-6 py-14">
       {/* Hero */}
       <div className="mb-8">
         <h1 className="font-serif text-3xl font-semibold sm:text-4xl">
@@ -88,14 +88,14 @@ export default function Feed() {
       </div>
 
       {/* Artistas destacados */}
-      <div className="mb-10">
+      <div className="mb-12">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/50">Artistas destacados</h2>
-        <div className="flex gap-3 overflow-x-auto pb-2">
+        <div className="flex gap-4 overflow-x-auto pb-2">
           {featuredArtists.map((artist) => (
             <Link
               key={artist.id}
               to={`/perfil/${artist.id}`}
-              className="flex w-40 shrink-0 flex-col items-center rounded-2xl border border-ink/10 bg-white p-4 text-center shadow-sm hover:shadow-md"
+              className="flex w-40 shrink-0 flex-col items-center rounded-3xl bg-white p-5 text-center shadow-card hover:shadow-card-hover"
             >
               <img src={artist.avatar} alt={artist.name} className="mb-2 h-16 w-16 rounded-full object-cover" />
               <p className="text-sm font-semibold leading-tight">{artist.name}</p>
@@ -109,12 +109,12 @@ export default function Feed() {
       </div>
 
       {/* Cómo funciona + ejemplo real de transacción */}
-      <div className="mb-10 grid gap-6 rounded-2xl border border-ink/10 bg-white p-6 md:grid-cols-[1fr_auto]">
+      <div className="mb-16 grid gap-8 rounded-3xl bg-white p-8 shadow-card md:grid-cols-[1fr_auto]">
         <div>
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-ink/50">Cómo funciona</h2>
           <ol className="space-y-3 text-sm">
             <li className="flex gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-semibold text-canvas">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
                 1
               </span>
               <span>
@@ -122,7 +122,7 @@ export default function Feed() {
               </span>
             </li>
             <li className="flex gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-semibold text-canvas">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
                 2
               </span>
               <span>
@@ -130,7 +130,7 @@ export default function Feed() {
               </span>
             </li>
             <li className="flex gap-3">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-semibold text-canvas">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
                 3
               </span>
               <span>
@@ -143,7 +143,7 @@ export default function Feed() {
         {exampleArtwork && (
           <Link
             to={`/obra/${exampleArtwork.id}`}
-            className="flex w-full items-center gap-3 rounded-xl border border-ink/10 p-3 hover:border-ink/30 md:w-64"
+            className="flex w-full items-center gap-3 rounded-2xl bg-accent-light/60 p-4 hover:bg-accent-light md:w-64"
           >
             <img
               src={exampleArtwork.image}
@@ -167,8 +167,8 @@ export default function Feed() {
             onClick={() => setActiveStyle(style)}
             className={`shrink-0 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
               activeStyle === style
-                ? 'border-ink bg-ink text-canvas'
-                : 'border-ink/15 text-ink/70 hover:border-ink/40'
+                ? 'border-accent bg-accent text-white'
+                : 'border-ink/15 text-ink/70 hover:border-accent/40'
             }`}
           >
             {style}
@@ -186,7 +186,7 @@ export default function Feed() {
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
             placeholder="Mín"
-            className="w-20 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm outline-none focus:border-ink/40"
+            className="w-20 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm outline-none focus:border-accent/50"
           />
           <span className="text-ink/30">–</span>
           <input
@@ -195,14 +195,14 @@ export default function Feed() {
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
             placeholder="Máx"
-            className="w-20 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm outline-none focus:border-ink/40"
+            className="w-20 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm outline-none focus:border-accent/50"
           />
         </div>
 
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm outline-none focus:border-ink/40"
+          className="rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm outline-none focus:border-accent/50"
         >
           <option value="recientes">Más recientes</option>
           <option value="precio-asc">Precio: menor a mayor</option>
@@ -215,7 +215,7 @@ export default function Feed() {
             type="checkbox"
             checked={onlyAvailable}
             onChange={(e) => setOnlyAvailable(e.target.checked)}
-            className="h-4 w-4 rounded border-ink/30"
+            className="h-4 w-4 rounded border-ink/30 accent-accent"
           />
           Solo disponibles
         </label>
@@ -240,7 +240,7 @@ export default function Feed() {
           No hay obras que coincidan con estos filtros. Prueba ampliando el presupuesto o quitando algún filtro.
         </p>
       ) : (
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+        <div className="columns-1 gap-8 sm:columns-2 lg:columns-3 xl:columns-4">
           {filtered.map((artwork) => (
             <ArtworkCard key={artwork.id} artwork={artwork} />
           ))}

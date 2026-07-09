@@ -47,7 +47,7 @@ export default function CartCheckoutModal({ items, onClose, onConfirm }) {
               </button>
               <button
                 onClick={() => setStep('pago')}
-                className="flex-1 rounded-full bg-ink py-2 text-sm font-semibold text-canvas"
+                className="flex-1 rounded-full bg-accent py-2 text-sm font-semibold text-white hover:bg-accent-dark"
               >
                 Continuar
               </button>
@@ -93,7 +93,7 @@ export default function CartCheckoutModal({ items, onClose, onConfirm }) {
               >
                 Atrás
               </button>
-              <button type="submit" className="flex-1 rounded-full bg-ink py-2 text-sm font-semibold text-canvas">
+              <button type="submit" className="flex-1 rounded-full bg-accent py-2 text-sm font-semibold text-white hover:bg-accent-dark">
                 Pagar ${total.toLocaleString()}
               </button>
             </div>
@@ -119,7 +119,7 @@ export default function CartCheckoutModal({ items, onClose, onConfirm }) {
                 onConfirm()
                 onClose()
               }}
-              className="w-full rounded-full bg-ink py-2 text-sm font-semibold text-canvas"
+              className="w-full rounded-full bg-accent py-2 text-sm font-semibold text-white hover:bg-accent-dark"
             >
               Seguir explorando
             </button>

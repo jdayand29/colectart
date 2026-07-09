@@ -27,7 +27,7 @@ export default function Carrito() {
             ? 'Puedes seguir explorando arte de artistas de todo el mundo.'
             : 'Agrega obras desde el feed o el perfil de un artista para comprarlas todas juntas.'}
         </p>
-        <Link to="/" className="rounded-full bg-ink px-6 py-2 text-sm font-semibold text-canvas">
+        <Link to="/" className="rounded-full bg-accent px-6 py-2 text-sm font-semibold text-white hover:bg-accent-dark">
           Ir al feed
         </Link>
       </div>
@@ -35,7 +35,7 @@ export default function Carrito() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
+    <div className="mx-auto max-w-3xl px-6 py-14">
       <h1 className="font-serif text-3xl font-semibold mb-2">Tu carrito</h1>
       <p className="text-ink/60 mb-6">
         Compra varias obras de distintos artistas en un solo pago.
@@ -45,7 +45,7 @@ export default function Carrito() {
         {items.map((artwork) => {
           const artist = getArtist(artwork.artistId)
           return (
-            <div key={artwork.id} className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-3">
+            <div key={artwork.id} className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-card">
               <Link to={`/obra/${artwork.id}`}>
                 <img src={artwork.image} alt={artwork.title} className="h-16 w-16 rounded-lg object-cover" />
               </Link>
@@ -70,7 +70,7 @@ export default function Carrito() {
         })}
       </div>
 
-      <div className="rounded-2xl border border-ink/10 bg-white p-5">
+      <div className="rounded-3xl bg-white p-6 shadow-card">
         <div className="mb-4 space-y-1 text-sm">
           <div className="flex justify-between">
             <span className="text-ink/60">Subtotal ({items.length} obra{items.length > 1 ? 's' : ''})</span>
@@ -87,7 +87,7 @@ export default function Carrito() {
         </div>
         <button
           onClick={() => setShowCheckout(true)}
-          className="w-full rounded-full bg-ink py-2.5 text-sm font-semibold text-canvas"
+          className="w-full rounded-full bg-accent py-2.5 text-sm font-semibold text-white hover:bg-accent-dark"
         >
           Finalizar compra
         </button>

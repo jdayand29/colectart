@@ -9,7 +9,7 @@ export default function Subastas() {
   const sorted = [...auctions].sort((a, b) => a.endTime - b.endTime)
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8">
+    <div className="mx-auto max-w-5xl px-6 py-14">
       <h1 className="font-serif text-3xl font-semibold mb-2">Subastas en vivo</h1>
       <p className="text-ink/60 mb-8">
         Algunos artistas eligen poner ciertas obras a subasta por tiempo limitado, en vez de precio fijo. Aquí puedes
@@ -24,7 +24,7 @@ export default function Subastas() {
           const artist = getArtist(artwork.artistId)
 
           return (
-            <div key={auction.id} className="grid gap-5 rounded-2xl border border-ink/10 bg-white p-5 sm:grid-cols-[160px_1fr_260px]">
+            <div key={auction.id} className="grid gap-5 rounded-3xl bg-white p-6 shadow-card sm:grid-cols-[160px_1fr_260px]">
               <Link to={`/obra/${artwork.id}`}>
                 <img src={artwork.image} alt={artwork.title} className="h-40 w-full rounded-xl object-cover" />
               </Link>

@@ -1,14 +1,20 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { artStyles } from '../data/styles'
+import ImageEditor from '../components/ImageEditor'
 
 export default function PublishArtwork() {
   const [saleType, setSaleType] = useState('sale')
   const [submitted, setSubmitted] = useState(false)
+  const [image, setImage] = useState(null)
+  const [imageError, setImageError] = useState('')
 
   if (submitted) {
     return (
       <div className="mx-auto max-w-md px-4 py-24 text-center">
+        {image && (
+          <img src={image} alt="Tu obra publicada" className="mx-auto mb-6 max-h-64 rounded-2xl object-cover shadow-card" />
+        )}
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-2xl">
           ✓
         </div>
@@ -16,7 +22,7 @@ export default function PublishArtwork() {
         <p className="text-sm text-ink/60 mb-6">
           En la versión completa, tu obra aparecería ahora en el feed global y en tu perfil.
         </p>
-        <Link to="/" className="rounded-full bg-ink px-6 py-2 text-sm font-semibold text-canvas">
+        <Link to="/" className="rounded-full bg-accent px-6 py-2 text-sm font-semibold text-white hover:bg-accent-dark">
           Volver al feed
         </Link>
       </div>
@@ -33,6 +39,11 @@ export default function PublishArtwork() {
       <form
         onSubmit={(e) => {
           e.preventDefault()
+          if (!image) {
+            setImageError('Agrega una foto de tu obra antes de publicar.')
+            return
+          }
+          setImageError('')
           setSubmitted(true)
         }}
         className="space-y-4"
@@ -43,8 +54,9 @@ export default function PublishArtwork() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">Imagen (URL)</label>
-          <input required type="url" className="w-full rounded-lg border border-ink/15 px-3 py-2 text-sm" placeholder="https://..." />
+          <label className="mb-1 block text-sm font-medium">Foto de la obra</label>
+          <ImageEditor value={image} onChange={setImage} />
+          {imageError && <p className="mt-1 text-xs text-red-600">{imageError}</p>}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
@@ -85,7 +97,7 @@ export default function PublishArtwork() {
               type="button"
               onClick={() => setSaleType('sale')}
               className={`flex-1 rounded-lg border px-4 py-2 text-sm font-medium ${
-                saleType === 'sale' ? 'border-ink bg-ink text-canvas' : 'border-ink/15'
+                saleType === 'sale' ? 'border-accent bg-accent text-white' : 'border-ink/15'
               }`}
             >
               Precio fijo
@@ -94,7 +106,7 @@ export default function PublishArtwork() {
               type="button"
               onClick={() => setSaleType('auction')}
               className={`flex-1 rounded-lg border px-4 py-2 text-sm font-medium ${
-                saleType === 'auction' ? 'border-ink bg-ink text-canvas' : 'border-ink/15'
+                saleType === 'auction' ? 'border-accent bg-accent text-white' : 'border-ink/15'
               }`}
             >
               Subasta (opcional)
@@ -124,7 +136,7 @@ export default function PublishArtwork() {
           </div>
         )}
 
-        <button type="submit" className="w-full rounded-full bg-ink py-2.5 text-sm font-semibold text-canvas">
+        <button type="submit" className="w-full rounded-full bg-accent py-2.5 text-sm font-semibold text-white hover:bg-accent-dark">
           Publicar obra
         </button>
       </form>

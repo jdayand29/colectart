@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, useState } from 'react'
 import { artworks as initialArtworks, auctions as initialAuctions } from '../data/mockData'
 
 const AppStateContext = createContext(null)
+const ROLE_KEY = 'colectart_role'
 
 export function AppStateProvider({ children }) {
   const [artworksState, setArtworksState] = useState(initialArtworks)
@@ -9,6 +10,22 @@ export function AppStateProvider({ children }) {
   const [liked, setLiked] = useState(() => new Set())
   const [following, setFollowing] = useState(() => new Set())
   const [cart, setCart] = useState(() => new Set())
+  const [role, setRoleState] = useState(() => {
+    if (typeof window === 'undefined') return null
+    return window.localStorage.getItem(ROLE_KEY)
+  })
+
+  function setRole(nextRole) {
+    setRoleState(nextRole)
+    if (typeof window !== 'undefined') {
+      if (nextRole) window.localStorage.setItem(ROLE_KEY, nextRole)
+      else window.localStorage.removeItem(ROLE_KEY)
+    }
+  }
+
+  function resetRole() {
+    setRole(null)
+  }
 
   function toggleLike(artworkId) {
     setLiked((prev) => {
@@ -71,6 +88,9 @@ export function AppStateProvider({ children }) {
       liked,
       following,
       cart,
+      role,
+      setRole,
+      resetRole,
       toggleLike,
       toggleFollow,
       buyArtwork,
@@ -79,7 +99,7 @@ export function AppStateProvider({ children }) {
       removeFromCart,
       checkoutCart,
     }),
-    [artworksState, auctionsState, liked, following, cart],
+    [artworksState, auctionsState, liked, following, cart, role],
   )
 
   return <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>

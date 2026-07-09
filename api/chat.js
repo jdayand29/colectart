@@ -37,7 +37,7 @@ const CATALOG = {
   ],
 }
 
-const SYSTEM_PROMPT = `Eres el asistente de compras de Artora, un marketplace de arte donde artistas y galerías de todo el mundo venden obras (a precio fijo o en subasta).
+const SYSTEM_PROMPT = `Eres el asistente de compras de ColectArt, un marketplace de arte donde artistas y galerías de todo el mundo venden obras (a precio fijo o en subasta).
 
 Tu trabajo es ayudar al usuario a encontrar obras, artistas o galerías según lo que te diga: su presupuesto, el estilo que busca (cubismo, impresionismo, abstracto, etc.), el país o ciudad que le interesa, o si busca una galería específica.
 

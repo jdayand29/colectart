@@ -22,7 +22,7 @@ export default function BidPanel({ auction }) {
   }
 
   return (
-    <div className="rounded-2xl border border-ink/10 bg-white p-5">
+    <div className="rounded-3xl bg-white p-6 shadow-card">
       <div className="mb-3 flex items-center justify-between">
         <span className="text-xs font-semibold uppercase tracking-wide text-red-600">Subasta en vivo</span>
         <span className="text-sm text-ink/60">
@@ -47,7 +47,7 @@ export default function BidPanel({ auction }) {
             onChange={(e) => setAmount(e.target.value)}
             className="w-full rounded-full border border-ink/15 px-4 py-2 text-sm"
           />
-          <button type="submit" className="shrink-0 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-canvas">
+          <button type="submit" className="shrink-0 rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white hover:bg-accent-dark">
             Pujar
           </button>
         </form>

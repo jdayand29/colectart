@@ -36,7 +36,7 @@ export default function BuyModal({ artwork, onClose, onConfirm }) {
               </button>
               <button
                 onClick={() => setStep('pago')}
-                className="flex-1 rounded-full bg-ink py-2 text-sm font-semibold text-canvas"
+                className="flex-1 rounded-full bg-accent py-2 text-sm font-semibold text-white hover:bg-accent-dark"
               >
                 Continuar
               </button>
@@ -82,7 +82,7 @@ export default function BuyModal({ artwork, onClose, onConfirm }) {
               >
                 Atrás
               </button>
-              <button type="submit" className="flex-1 rounded-full bg-ink py-2 text-sm font-semibold text-canvas">
+              <button type="submit" className="flex-1 rounded-full bg-accent py-2 text-sm font-semibold text-white hover:bg-accent-dark">
                 Pagar ${(artwork.price + 45).toLocaleString()}
               </button>
             </div>
@@ -106,7 +106,7 @@ export default function BuyModal({ artwork, onClose, onConfirm }) {
                 onConfirm()
                 onClose()
               }}
-              className="w-full rounded-full bg-ink py-2 text-sm font-semibold text-canvas"
+              className="w-full rounded-full bg-accent py-2 text-sm font-semibold text-white hover:bg-accent-dark"
             >
               Volver a la obra
             </button>

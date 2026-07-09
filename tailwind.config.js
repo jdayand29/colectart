@@ -4,11 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#141311',
-        canvas: '#faf8f5',
+        ink: '#0a0a0a',
+        canvas: '#ffffff',
+        accent: {
+          DEFAULT: '#0a0a0a',
+          dark: '#000000',
+          light: '#f2f2f2',
+        },
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['Fraunces', '"Playfair Display"', 'Georgia', 'serif'],
+      },
+      boxShadow: {
+        card: '0 2px 24px -8px rgba(0, 0, 0, 0.10)',
+        'card-hover': '0 8px 32px -8px rgba(0, 0, 0, 0.16)',
       },
     },
   },

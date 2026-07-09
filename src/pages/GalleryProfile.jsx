@@ -17,11 +17,11 @@ export default function GalleryProfile() {
   const works = artworks.filter((w) => representedIds.has(w.artistId))
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-6xl px-6 py-14">
       <div className="mb-8 flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
         <img src={gallery.logo} alt={gallery.name} className="h-24 w-24 rounded-2xl object-cover" />
         <div className="flex-1">
-          <span className="mb-1 inline-block rounded-full bg-ink/5 px-3 py-1 text-xs font-medium text-ink/60">
+          <span className="mb-1 inline-block rounded-full bg-accent-light px-3 py-1 text-xs font-medium text-accent-dark">
             Galería
           </span>
           <h1 className="font-serif text-2xl font-semibold">{gallery.name}</h1>
@@ -40,7 +40,7 @@ export default function GalleryProfile() {
               <Link
                 key={artist.id}
                 to={`/perfil/${artist.id}`}
-                className="flex items-center gap-3 rounded-full border border-ink/10 bg-white px-3 py-2 shadow-sm hover:shadow-md"
+                className="flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-card hover:shadow-card-hover"
               >
                 <img src={artist.avatar} alt={artist.name} className="h-10 w-10 rounded-full object-cover" />
                 <div className="text-left">
@@ -54,7 +54,7 @@ export default function GalleryProfile() {
       )}
 
       <h2 className="mb-3 text-sm font-semibold text-ink/50 uppercase tracking-wide">Obras en la galería</h2>
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+      <div className="columns-1 gap-8 sm:columns-2 lg:columns-3 xl:columns-4">
         {works.map((artwork) => (
           <ArtworkCard key={artwork.id} artwork={artwork} />
         ))}

@@ -28,7 +28,7 @@ function renderWithLinks(text) {
 const WELCOME = {
   role: 'assistant',
   content:
-    '¡Hola! Soy el asistente de Artora. Cuéntame tu presupuesto, el estilo que te gusta o la ciudad que te interesa, y te ayudo a encontrar obras, artistas o galerías.',
+    '¡Hola! Soy el asistente de ColectArt. Cuéntame tu presupuesto, el estilo que te gusta o la ciudad que te interesa, y te ayudo a encontrar obras, artistas o galerías.',
 }
 
 export default function ChatWidget() {
@@ -77,7 +77,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen((v) => !v)}
         className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-ink text-canvas shadow-lg hover:bg-ink/90"
-        aria-label="Abrir asistente de Artora"
+        aria-label="Abrir asistente de ColectArt"
       >
         {open ? '✕' : '💬'}
       </button>
@@ -85,7 +85,7 @@ export default function ChatWidget() {
       {open && (
         <div className="fixed bottom-24 right-5 z-50 flex h-[28rem] w-[22rem] max-w-[calc(100vw-2.5rem)] flex-col overflow-hidden rounded-2xl border border-ink/10 bg-canvas shadow-2xl">
           <div className="border-b border-ink/10 bg-white px-4 py-3">
-            <p className="font-serif text-base font-semibold">Asistente Artora</p>
+            <p className="font-serif text-base font-semibold">Asistente ColectArt</p>
             <p className="text-xs text-ink/50">Te ayudo a encontrar arte según tu gusto y presupuesto</p>
           </div>
 

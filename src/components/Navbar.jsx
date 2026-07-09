@@ -4,13 +4,14 @@ import { useAppState } from '../store/AppState'
 
 const linkClass = ({ isActive }) =>
   `px-3 py-2 rounded-full text-sm font-medium transition-colors ${
-    isActive ? 'bg-ink text-canvas' : 'text-ink/70 hover:bg-ink/5'
+    isActive ? 'bg-ink text-canvas' : 'text-ink/70 hover:bg-accent-light/60'
   }`
 
 export default function Navbar() {
   const [query, setQuery] = useState('')
   const navigate = useNavigate()
-  const { cart } = useAppState()
+  const { cart, role, resetRole } = useAppState()
+  const isArtist = role === 'artista'
 
   function handleSearch(e) {
     e.preventDefault()
@@ -19,9 +20,9 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-ink/10 bg-canvas/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <NavLink to="/" className="shrink-0 font-serif text-2xl font-semibold tracking-tight">
-          Artora
+      <div className="mx-auto flex max-w-6xl items-center gap-6 px-6 py-4">
+        <NavLink to="/" className="shrink-0 font-serif text-2xl font-semibold italic tracking-tight text-accent">
+          ColectArt
         </NavLink>
 
         <form onSubmit={handleSearch} className="hidden flex-1 max-w-md sm:block">
@@ -44,9 +45,11 @@ export default function Navbar() {
           <NavLink to="/subastas" className={linkClass}>
             Subastas
           </NavLink>
-          <NavLink to="/perfil/a1" className={linkClass}>
-            Mi perfil
-          </NavLink>
+          {isArtist && (
+            <NavLink to="/perfil/a9" className={linkClass}>
+              Mi perfil
+            </NavLink>
+          )}
           <NavLink to="/carrito" className={linkClass}>
             <span className="relative">
               Carrito
@@ -59,12 +62,22 @@ export default function Navbar() {
           </NavLink>
         </nav>
 
-        <NavLink
-          to="/publicar"
-          className="ml-1 shrink-0 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-canvas hover:bg-ink/90"
+        {isArtist && (
+          <NavLink
+            to="/publicar"
+            className="ml-1 shrink-0 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent-dark"
+          >
+            + Publicar obra
+          </NavLink>
+        )}
+
+        <button
+          onClick={resetRole}
+          className="ml-1 shrink-0 text-xs text-ink/30 hover:text-ink/60"
+          title="Cambiar entre modo artista y coleccionista"
         >
-          + Publicar obra
-        </NavLink>
+          Cambiar modo
+        </button>
       </div>
     </header>
   )

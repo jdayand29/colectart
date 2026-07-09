@@ -113,6 +113,20 @@ export const artists = [
     verified: false,
     specialties: ['Arte Urbano', 'Pop Art'],
   },
+  {
+    id: 'a9',
+    name: 'Joseph Dayan',
+    username: '@josephdayanart',
+    country: 'Panamá',
+    city: 'Ciudad de Panamá',
+    flag: '🇵🇦',
+    galleryId: null,
+    avatar: '/artists/joseph-dayan/perfil-joseph.jpg',
+    bio: 'Pintor panameño. Explora el simbolismo, la introspección y la abstracción a través del acrílico y la espátula.',
+    followers: 512,
+    verified: false,
+    specialties: ['Surrealismo', 'Abstracto'],
+  },
 ]
 
 const now = Date.now()
@@ -132,6 +146,7 @@ export const artworks = [
     likes: 342,
     comments: 28,
     type: 'sale',
+    exhibitedAt: 'mu1',
   },
   {
     id: 'w2',
@@ -204,6 +219,7 @@ export const artworks = [
     likes: 302,
     comments: 19,
     type: 'sale',
+    exhibitedAt: 'mu4',
   },
   {
     id: 'w7',
@@ -274,6 +290,7 @@ export const artworks = [
     likes: 167,
     comments: 9,
     type: 'sale',
+    exhibitedAt: 'mu5',
   },
   {
     id: 'w12',
@@ -315,6 +332,122 @@ export const artworks = [
     price: 1400,
     likes: 245,
     comments: 16,
+    type: 'sale',
+  },
+  {
+    id: 'w15',
+    artistId: 'a9',
+    title: 'Nebulosa Dorada',
+    image: '/artists/joseph-dayan/nebulosa-dorada.jpg',
+    medium: 'Acrílico sobre lienzo',
+    style: 'Abstracto',
+    size: '40 x 50 cm',
+    year: 2025,
+    price: 450,
+    likes: 58,
+    comments: 6,
+    type: 'sale',
+    collectionId: 'col1',
+  },
+  {
+    id: 'w16',
+    artistId: 'a9',
+    title: 'Siluetas en Armonía',
+    image: '/artists/joseph-dayan/siluetas-en-armonia.jpg',
+    medium: 'Acrílico sobre lienzo',
+    style: 'Contemporáneo',
+    size: '100 x 140 cm',
+    year: 2024,
+    price: 1400,
+    likes: 91,
+    comments: 12,
+    type: 'sale',
+  },
+  {
+    id: 'w17',
+    artistId: 'a9',
+    title: 'Corazón y Razón',
+    image: '/artists/joseph-dayan/corazon-y-razon.jpg',
+    medium: 'Acrílico sobre lienzo',
+    style: 'Surrealismo',
+    size: '50 x 70 cm',
+    year: 2023,
+    price: 680,
+    likes: 74,
+    comments: 9,
+    type: 'sale',
+    collectionId: 'col2',
+  },
+  {
+    id: 'w18',
+    artistId: 'a9',
+    title: 'Alcanzando el Horizonte',
+    image: '/artists/joseph-dayan/alcanzando-el-horizonte.jpg',
+    medium: 'Acrílico sobre lienzo, técnica de espátula',
+    style: 'Surrealismo',
+    size: '70 x 100 cm',
+    year: 2025,
+    likes: 103,
+    comments: 14,
+    type: 'auction',
+    auctionId: 'auc5',
+    collectionId: 'col1',
+  },
+  {
+    id: 'w19',
+    artistId: 'a9',
+    title: 'El Pabellón Escondido',
+    image: '/artists/joseph-dayan/el-pabellon-escondido.jpg',
+    medium: 'Acrílico sobre lienzo',
+    style: 'Realismo',
+    size: '60 x 75 cm',
+    year: 2022,
+    price: 950,
+    likes: 66,
+    comments: 8,
+    type: 'sale',
+  },
+  {
+    id: 'w20',
+    artistId: 'a9',
+    title: 'Barco de Papel',
+    image: '/artists/joseph-dayan/barco-de-papel.jpg',
+    medium: 'Acrílico sobre lienzo',
+    style: 'Minimalismo',
+    size: '45 x 60 cm',
+    year: 2024,
+    price: 520,
+    likes: 47,
+    comments: 5,
+    type: 'sale',
+  },
+  {
+    id: 'w21',
+    artistId: 'a9',
+    title: 'El Filo del Tiempo',
+    image: '/artists/joseph-dayan/el-filo-del-tiempo.jpg',
+    medium: 'Acrílico y hoja de oro sobre lienzo',
+    style: 'Arte Conceptual',
+    size: '60 x 90 cm',
+    year: 2023,
+    likes: 88,
+    comments: 11,
+    type: 'auction',
+    auctionId: 'auc6',
+    collectionId: 'col2',
+  },
+  {
+    id: 'w22',
+    artistId: 'a9',
+    title: 'Danza de Koi',
+    image: '/artists/joseph-dayan/danza-de-koi.jpg',
+    medium: 'Acrílico con espátula sobre lienzo',
+    style: 'Expresionismo',
+    size: '80 x 80 cm',
+    year: 2024,
+    price: 890,
+    likes: 79,
+    comments: 10,
     type: 'sale',
   },
 ]
@@ -372,6 +505,75 @@ export const galleries = [
   },
 ]
 
+export const collections = [
+  {
+    id: 'col1',
+    artistId: 'a9',
+    name: 'Serie Cósmica',
+    description:
+      'Remolinos de color inspirados en el cosmos: el instante exacto en que la luz vence a la oscuridad.',
+  },
+  {
+    id: 'col2',
+    artistId: 'a9',
+    name: 'Dualidades',
+    description: 'El conflicto entre la razón y la emoción, el tiempo que pasa y las decisiones que definen.',
+  },
+]
+
+export const museums = [
+  {
+    id: 'mu1',
+    name: 'Museo de Arte Moderno CDMX',
+    country: 'México',
+    city: 'Ciudad de México',
+    flag: '🇲🇽',
+    image: 'https://picsum.photos/seed/museo-cdmx/200/200',
+    founded: 1964,
+    description: 'Colección permanente de arte mexicano de los siglos XX y XXI, con exhibiciones temporales de artistas emergentes.',
+  },
+  {
+    id: 'mu2',
+    name: 'Kyoto Museum of Ink Arts',
+    country: 'Japón',
+    city: 'Kioto',
+    flag: '🇯🇵',
+    image: 'https://picsum.photos/seed/museo-kioto/200/200',
+    founded: 1972,
+    description: 'Dedicado a la tinta, la acuarela y la caligrafía japonesa tradicional y contemporánea.',
+  },
+  {
+    id: 'mu3',
+    name: 'Lagos National Gallery of Modern Art',
+    country: 'Nigeria',
+    city: 'Lagos',
+    flag: '🇳🇬',
+    image: 'https://picsum.photos/seed/museo-lagos/200/200',
+    founded: 1990,
+    description: 'El museo nacional de arte moderno de Nigeria, con enfoque en la escena artística de África Occidental.',
+  },
+  {
+    id: 'mu4',
+    name: 'Seoul Museum of Contemporary Art',
+    country: 'Corea del Sur',
+    city: 'Seúl',
+    flag: '🇰🇷',
+    image: 'https://picsum.photos/seed/museo-seul/200/200',
+    founded: 1988,
+    description: 'Arte contemporáneo coreano y asiático, con énfasis en minimalismo y caligrafía moderna.',
+  },
+  {
+    id: 'mu5',
+    name: 'Museo de Arte Digital de Buenos Aires',
+    country: 'Argentina',
+    city: 'Buenos Aires',
+    flag: '🇦🇷',
+    image: 'https://picsum.photos/seed/museo-baires/200/200',
+    founded: 2015,
+    description: 'El primer museo de Latinoamérica dedicado exclusivamente a arte digital y fotografía manipulada.',
+  },
+]
+
 export const auctions = [
   {
     id: 'auc1',
@@ -421,6 +623,31 @@ export const auctions = [
     endTime: now + hours(50),
     bidHistory: [],
   },
+  {
+    id: 'auc5',
+    artworkId: 'w18',
+    startPrice: 900,
+    currentBid: 1250,
+    currentBidder: 'arte_coleccionista',
+    endTime: now + hours(18),
+    bidHistory: [
+      { bidder: 'panama_arte', amount: 900, time: now - hours(26) },
+      { bidder: 'arte_coleccionista', amount: 1100, time: now - hours(10) },
+      { bidder: 'arte_coleccionista', amount: 1250, time: now - hours(3) },
+    ],
+  },
+  {
+    id: 'auc6',
+    artworkId: 'w21',
+    startPrice: 700,
+    currentBid: 980,
+    currentBidder: 'galeria_pty',
+    endTime: now + hours(6),
+    bidHistory: [
+      { bidder: 'coleccion_privada', amount: 700, time: now - hours(15) },
+      { bidder: 'galeria_pty', amount: 980, time: now - hours(4) },
+    ],
+  },
 ]
 
 export function getArtist(id) {
@@ -445,4 +672,16 @@ export function getGallery(id) {
 
 export function getArtistsByGallery(galleryId) {
   return artists.filter((a) => a.galleryId === galleryId)
+}
+
+export function getMuseum(id) {
+  return museums.find((m) => m.id === id)
+}
+
+export function getCollection(id) {
+  return collections.find((c) => c.id === id)
+}
+
+export function getCollectionsByArtist(artistId) {
+  return collections.filter((c) => c.artistId === artistId)
 }
