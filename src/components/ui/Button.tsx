@@ -32,7 +32,7 @@ const variantClass: Record<ButtonVariant, string> = {
  */
 export function buttonVariants({ variant = 'solid', size = 'md', className }: ButtonVariantOptions = {}) {
   return clsx(
-    'inline-flex items-center justify-center rounded-full font-semibold shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+    'inline-flex items-center justify-center rounded-full font-semibold shadow-subtle transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
     sizeClass[size],
     variantClass[variant],
     focusRingClassName,

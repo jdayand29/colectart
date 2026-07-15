@@ -62,11 +62,19 @@ export default {
       },
       borderRadius: {
         card: '1.5rem',
+        // Faltaban en este espejo aunque ya existían documentados en
+        // src/styles/tokens/radius.ts — Skeleton/Textarea usaban el valor
+        // equivalente sin la clase nombrada (auditoría Fase D).
+        image: '0.75rem',
+        field: '1rem', // radio real ya usado por los textarea del sitio (rounded-2xl)
       },
       boxShadow: {
         card: '0 2px 24px -8px rgba(0, 0, 0, 0.10)',
         'card-hover': '0 8px 32px -8px rgba(0, 0, 0, 0.16)',
         elevated: '0 16px 48px -12px rgba(0, 0, 0, 0.24)',
+        // Mismo valor exacto que el shadow-sm nativo de Tailwind que Button
+        // usaba sin tokenizar (auditoría Fase D) — cero cambio visual.
+        subtle: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
       },
       zIndex: {
         header: '40',

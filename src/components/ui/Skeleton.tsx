@@ -11,7 +11,7 @@ export default function Skeleton({ className }: SkeletonProps) {
     <div
       role="presentation"
       aria-hidden="true"
-      className={clsx('animate-pulse rounded-xl bg-canvas-alt motion-reduce:animate-none', className)}
+      className={clsx('animate-pulse rounded-image bg-canvas-alt motion-reduce:animate-none', className)}
     />
   )
 }

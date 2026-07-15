@@ -16,7 +16,7 @@ export default function Link({ children, className, underline = true, ...props }
   return (
     <NextLink
       className={clsx(
-        'rounded-sm text-sm font-medium text-ink',
+        'text-sm font-medium text-ink',
         underline && 'underline-offset-2 hover:underline',
         focusRingClassName,
         className,

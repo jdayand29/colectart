@@ -20,7 +20,7 @@ export default function IconButton({ variant = 'dark', className, ...props }: Ic
       className={clsx(
         // 44px mínimo de área de toque (regla de accesibilidad táctil), aunque
         // el ícono visual sea más pequeño.
-        'flex h-11 w-11 items-center justify-center rounded-full transition-colors disabled:opacity-50',
+        'flex h-11 w-11 items-center justify-center rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
         variantClass[variant],
         focusRingClassName,
         className,

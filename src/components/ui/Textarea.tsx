@@ -24,7 +24,7 @@ export default function Textarea({ label, error, id, className, ...props }: Text
         aria-invalid={!!error}
         aria-describedby={errorId}
         className={clsx(
-          'w-full rounded-2xl border bg-white px-4 py-2.5 text-sm outline-none transition-colors',
+          'w-full rounded-field border bg-white px-4 py-2.5 text-sm outline-none transition-colors',
           error ? 'border-red-400' : 'border-ink/15 focus:border-accent/50',
           focusRingClassName,
           className,
