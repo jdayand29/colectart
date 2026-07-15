@@ -2,13 +2,13 @@ import Link from 'next/link'
 import type { Collection } from '@/types/artwork'
 
 interface CollectionCardProps {
-  collection: Pick<Collection, 'id' | 'name' | 'description'>
+  collection: Pick<Collection, 'slug' | 'name' | 'description'>
 }
 
 export default function CollectionCard({ collection }: CollectionCardProps) {
   return (
     <Link
-      href={`/coleccion/${collection.id}`}
+      href={`/coleccion/${collection.slug}`}
       className="rounded-3xl bg-white p-8 shadow-card hover:shadow-card-hover"
     >
       <h2 className="font-serif text-2xl font-medium">{collection.name}</h2>

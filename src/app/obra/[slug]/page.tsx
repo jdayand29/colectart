@@ -6,7 +6,7 @@ import {
   getAllArtworks,
   getArtworkBySlug,
   getArtist,
-  getCollectionBySlug,
+  getAllCollections,
 } from '@/lib/repositories/artworkRepository'
 import SpecTable from '@/components/artwork/SpecTable'
 import ArtworkLightbox from '@/components/artwork/ArtworkLightbox'
@@ -17,7 +17,7 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return getAllArtworks().map((artwork) => ({ slug: artwork.id }))
+  return getAllArtworks().map((artwork) => ({ slug: artwork.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -45,7 +45,12 @@ export default async function ArtworkPage({ params }: PageProps) {
   if (!artwork) notFound()
 
   const artist = getArtist()
-  const collection = artwork.collectionId ? getCollectionBySlug(artwork.collectionId) : undefined
+  // artwork.collectionId referencia el `id` interno de la colección (no su
+  // slug) — se resuelve buscando en getAllCollections(), sin agregar una
+  // función nueva al repositorio (getCollectionBySlug es solo por slug).
+  const collection = artwork.collectionId
+    ? getAllCollections().find((c) => c.id === artwork.collectionId)
+    : undefined
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-14">
@@ -71,7 +76,7 @@ export default async function ArtworkPage({ params }: PageProps) {
 
           {collection && (
             <Link
-              href={`/coleccion/${collection.id}`}
+              href={`/coleccion/${collection.slug}`}
               className="mb-3 flex w-fit items-center gap-2 rounded-full bg-accent-light px-3 py-1.5 text-xs font-medium text-ink/70 hover:bg-ink/10"
             >
               Parte de la colección &ldquo;{collection.name}&rdquo; →

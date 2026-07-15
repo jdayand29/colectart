@@ -13,7 +13,7 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return getAllCollections().map((collection) => ({ slug: collection.id }))
+  return getAllCollections().map((collection) => ({ slug: collection.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

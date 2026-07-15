@@ -5,9 +5,9 @@ import ArtworkCard from '@/components/artwork/ArtworkCard'
 import type { Artist, Artwork } from '@/types/artwork'
 
 interface ArtworkCatalogProps {
-  artworks: Artwork[]
+  artworks: ReadonlyArray<Artwork>
   artist: Pick<Artist, 'name' | 'avatar' | 'flag'>
-  styles: string[]
+  styles: ReadonlyArray<string>
 }
 
 export default function ArtworkCatalog({ artworks, artist, styles }: ArtworkCatalogProps) {

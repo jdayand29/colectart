@@ -5,14 +5,14 @@ import Badge from '@/components/ui/Badge'
 import type { Artwork, Artist } from '@/types/artwork'
 
 interface ArtworkCardProps {
-  artwork: Pick<Artwork, 'id' | 'title' | 'image' | 'style' | 'price' | 'sold'>
+  artwork: Pick<Artwork, 'slug' | 'title' | 'image' | 'style' | 'price' | 'sold'>
   artist: Pick<Artist, 'name' | 'avatar' | 'flag'>
 }
 
 export default function ArtworkCard({ artwork, artist }: ArtworkCardProps) {
   return (
     <div className="mb-10 break-inside-avoid">
-      <Link href={`/obra/${artwork.id}`} className="group block">
+      <Link href={`/obra/${artwork.slug}`} className="group block">
         <div className="relative overflow-hidden rounded-xl">
           <Image
             src={artwork.image}
@@ -48,7 +48,7 @@ export default function ArtworkCard({ artwork, artist }: ArtworkCardProps) {
       </Link>
 
       <div className="mt-3">
-        <Link href={`/obra/${artwork.id}`}>
+        <Link href={`/obra/${artwork.slug}`}>
           <h3 className="font-serif text-lg font-medium leading-snug">{artwork.title}</h3>
         </Link>
         <p className="mt-0.5 text-xs text-ink/40">{artwork.style}</p>
