@@ -132,22 +132,8 @@ export const collections: Collection[] = [
   },
 ]
 
-export function getArtist(id: string): Artist | undefined {
-  return artists.find((a) => a.id === id)
-}
-
-export function getArtwork(id: string): Artwork | undefined {
-  return artworks.find((w) => w.id === id)
-}
-
-export function getArtworksByArtist(artistId: string): Artwork[] {
-  return artworks.filter((w) => w.artistId === artistId)
-}
-
-export function getCollection(id: string): Collection | undefined {
-  return collections.find((c) => c.id === id)
-}
-
-export function getCollectionsByArtist(artistId: string): Collection[] {
-  return collections.filter((c) => c.artistId === artistId)
-}
+// Sin funciones de acceso aquí a propósito: este módulo es solo la fuente de
+// datos cruda. Cualquier código de la app (rutas o componentes) que necesite
+// leer obras/artista/colecciones pasa por src/lib/repositories/artworkRepository.ts,
+// nunca por este archivo directamente — así el día que esto se mueva a Supabase
+// solo cambia el repositorio, no cada página.

@@ -1,18 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getArtist } from '@/data/artworks'
 import { formatPrice } from '@/utils/formatPrice'
 import Badge from '@/components/ui/Badge'
-import type { Artwork } from '@/types/artwork'
+import type { Artwork, Artist } from '@/types/artwork'
 
 interface ArtworkCardProps {
-  artwork: Artwork
+  artwork: Pick<Artwork, 'id' | 'title' | 'image' | 'style' | 'price' | 'sold'>
+  artist: Pick<Artist, 'name' | 'avatar' | 'flag'>
 }
 
-export default function ArtworkCard({ artwork }: ArtworkCardProps) {
-  const artist = getArtist(artwork.artistId)
-  if (!artist) return null
-
+export default function ArtworkCard({ artwork, artist }: ArtworkCardProps) {
   return (
     <div className="mb-10 break-inside-avoid">
       <Link href={`/obra/${artwork.id}`} className="group block">
