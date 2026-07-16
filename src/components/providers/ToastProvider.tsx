@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useCallback, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useMemo, useState, type ReactNode } from 'react'
 import { ToastPrimitiveProvider, ToastViewport, Toast } from '@/components/ui/Toast'
 
 interface ToastMessage {
@@ -42,8 +42,13 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     setToasts((prev) => prev.filter((t) => t.id !== id))
   }, [])
 
+  // Memoizado: sin esto, cada cambio de `toasts` (agregar/quitar un toast)
+  // crea un objeto `value` nuevo y fuerza a re-renderizar a todo consumidor
+  // de useToast(), aunque `toast` en sí no haya cambiado.
+  const contextValue = useMemo(() => ({ toast }), [toast])
+
   return (
-    <ToastContext.Provider value={{ toast }}>
+    <ToastContext.Provider value={contextValue}>
       <ToastPrimitiveProvider swipeDirection="right">
         {children}
         {toasts.map((t) => (
