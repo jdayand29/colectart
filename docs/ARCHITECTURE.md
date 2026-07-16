@@ -105,6 +105,11 @@ Una carpeta "aún vacía" existe en la estructura porque su necesidad ya está j
 - Toda animación consulta `useReducedMotion` y ofrece una versión reducida — no es opcional por componente.
 - Duraciones/curvas vienen de `styles/tokens/motion.ts` — nunca un `duration-300` elegido a ojo sin corresponder a un token.
 
+## Toast Pattern
+
+- `providers/ToastProvider` mantiene un único `Toast.Root` (`@radix-ui/react-toast`) siempre montado, alternando su prop `open` — nunca un array de instancias creadas/destruidas dinámicamente vía `.map()`. Montar una instancia nueva de `Toast.Root` ya con `open`/`defaultOpen` en `true` en el mismo render dispara `onOpenChange(false)` inmediatamente (confirmado empíricamente); el patrón oficial del mantenedor (Radix `primitives` discusión #2907) es dejar el `Root` montado y solo alternar `open`.
+- Consecuencia: un solo toast visible a la vez. Disparar uno mientras otro sigue abierto reemplaza su contenido en vez de apilarlo — suficiente para los casos reales del sitio (confirmación de envío, error de formulario); si en el futuro se necesita una cola de varios toasts simultáneos, requiere rediseñar `ToastProvider`, no `ui/Toast.tsx`.
+
 ## Accessibility Checklist
 
 Antes de dar por terminado cualquier componente interactivo nuevo:

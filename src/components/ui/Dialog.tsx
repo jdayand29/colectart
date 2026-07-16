@@ -4,7 +4,6 @@ import * as RadixDialog from '@radix-ui/react-dialog'
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import IconButton from '@/components/ui/IconButton'
-import { focusRingClassName } from '@/styles/tokens/focus'
 
 // Reskin completo de @radix-ui/react-dialog con los tokens de Joseph Dayan —
 // Radix resuelve foco atrapado/Esc/scroll-lock/ARIA de fábrica, aquí solo se
@@ -44,7 +43,7 @@ export function DialogContent({ children, title, hideTitle, description, classNa
         {description && <RadixDialog.Description className="mt-1 text-sm text-ink/60">{description}</RadixDialog.Description>}
         <div className="mt-4">{children}</div>
         <RadixDialog.Close asChild>
-          <IconButton aria-label="Cerrar" className={clsx('absolute right-3 top-3', focusRingClassName)}>
+          <IconButton aria-label="Cerrar" className="absolute right-3 top-3">
             ✕
           </IconButton>
         </RadixDialog.Close>
