@@ -39,6 +39,34 @@ src/app/                 rutas — orquestan repositorios/servicios y componente
 5. Reglas de negocio simples y explícitas viven aquí (ej. `getRelatedArtworks`: misma colección primero, si no mismo estilo) — se documentan inline el día que se definen, nunca se asumen implícitas.
 6. El acceso condicionado futuro (área privada, membresías) se resuelve en esta capa (o en `services/`), nunca ocultando/mostrando UI con una condición dispersa en un componente visual.
 
+## Image Metadata Pipeline
+
+`src/data/artwork-image-metadata.generated.json` es un manifest **machine-owned**
+(`{ [rutaPública]: { width, height } }`) con el `width`/`height` real de cada
+foto, medido del archivo — nunca derivado del campo `size` (medida física del
+lienzo; no coincide con el ratio real del archivo fotografiado, verificado con
+evidencia: `nebulosa-dorada.jpg` mide físicamente 40×50cm=ratio 0.8, pero el
+archivo real es 1027×1400px=ratio 0.734). Es la única fuente de verdad del
+aspect ratio de cada obra (consumida por el repositorio, Fase I.1).
+
+Aunque es generado, **se versiona en git** como cualquier otro archivo de
+datos — no se regenera en cada build (ver más abajo).
+
+- `npm run images:generate` — mide con `sharp` cada ruta real referenciada en
+  `data/artworks.ts` y sobreescribe el manifest completo. Correr cuando se
+  agrega una obra nueva o se reemplaza el archivo de una foto existente en la
+  misma ruta. Su resultado se commitea.
+- `npm run images:check` — vuelve a medir cada archivo real y compara contra
+  el manifest ya commiteado (clave **y** valor, no solo presencia). Si falta
+  una entrada o una foto fue reemplazada sin regenerar, falla con la lista
+  completa de discrepancias y código de salida 1.
+- `prebuild` (antes de `vite build`) y `prebuild:next` (antes de `next build`)
+  corren `images:check` — **nunca `images:generate`**: un build no debe
+  reescribir en silencio un archivo versionado, eso ocultaría que una imagen
+  cambió sin que nadie regenerara su metadata a propósito.
+- El script vive en `scripts/generate-artwork-image-metadata.ts`, fuera de
+  `src/` — es tooling de mantenimiento, no código de aplicación.
+
 ## Component Rules
 
 1. Ningún componente recibe más props de las que efectivamente usa — preferir `Pick<Entity, 'campo1' | 'campo2'>` sobre la entidad completa cuando el componente no necesita todo.

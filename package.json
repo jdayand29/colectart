@@ -5,11 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run images:check",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
     "dev:next": "next dev",
-    "build:next": "next build"
+    "prebuild:next": "npm run images:check",
+    "build:next": "next build",
+    "images:generate": "tsx scripts/generate-artwork-image-metadata.ts --generate",
+    "images:check": "tsx scripts/generate-artwork-image-metadata.ts --check"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
@@ -40,7 +44,9 @@
     "eslint-config-next": "^16.2.10",
     "oxlint": "^1.71.0",
     "postcss": "^8.5.16",
+    "sharp": "^0.35.3",
     "tailwindcss": "^3.4.19",
+    "tsx": "^4.23.1",
     "typescript": "^5",
     "vite": "^8.1.1"
   }
