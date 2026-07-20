@@ -12,7 +12,11 @@ producción). Progreso:
   producción real (`next build` + `next start`, no `next dev`): el HTML
   servido ahora incluye `<link rel="icon" href="/favicon.svg">`. Commit
   hecho en `cutover-preflight`.
-- [ ] Resolver colisión de `/api/subscribe` (borrar `api/subscribe.js`/`api/chat.js`).
+- [x] **Colisión de `/api/subscribe` resuelta.** `api/subscribe.js` y
+  `api/chat.js` borrados. `tsc --noEmit` limpio; confirmado que
+  `src/app/api/subscribe/route.ts` sigue intacto y es ahora el único
+  resolutor de esa ruta; cero referencias colgantes a los archivos borrados
+  en todo el repo (grep de `api/subscribe.js`/`api/chat.js`: vacío).
 - [ ] `vercel.json`: `framework: nextjs` + `buildCommand: npm run build:next`.
 - [ ] PFV-1/PFV-2 — instalación limpia + build limpio equivalente a Vercel.
 - [ ] PFV-7 — `NEXT_PUBLIC_SITE_URL` en Vercel (entorno Preview).
@@ -141,16 +145,18 @@ Cada bloque se completa y valida antes de continuar al siguiente.
   contiene `<link rel="icon" href="/favicon.svg">`, confirmado con `curl` +
   grep contra el HTML real.
 - **Documentado:** esta sección + apartado de progreso arriba.
-- **Commit:** pendiente de este mismo turno (se hace inmediatamente después
-  de este bloque).
+- **Commit:** `8c7c355`.
 
-### Bloque 2 — Colisión de `/api/subscribe` (siguiente)
+### Bloque 2 — Colisión de `/api/subscribe` ✅ Completo
 
-- **A implementar:** borrar `api/subscribe.js` y `api/chat.js`.
-- **A verificar:** `tsc --noEmit` (no debería verse afectado, son `.js`
-  sueltos fuera del `include` de `tsconfig.json`); confirmar que
-  `src/app/api/subscribe/route.ts` sigue intacto y es el único que resuelve
-  `/api/subscribe` de aquí en adelante.
+- **Implementado:** borrados `api/subscribe.js` y `api/chat.js`.
+- **Verificado:** `tsc --noEmit` limpio; `src/app/api/subscribe/route.ts`
+  confirmado intacto (único resolutor de `/api/subscribe` de aquí en
+  adelante); `grep` de `api/subscribe.js`/`api/chat.js` en todo el repo
+  (excluyendo `node_modules`/`.git`) sin resultados — sin referencias
+  colgantes.
+- **Documentado:** esta sección + apartado de progreso arriba.
+- **Commit:** siguiente en este mismo turno.
 
 ### Bloque 3 — `vercel.json`
 
